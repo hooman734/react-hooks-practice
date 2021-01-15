@@ -6,9 +6,8 @@ const Search = () => {
     const [results, setResults] = useState([]);
 
     useEffect(() => {
-        if (term) {
-            const timeoutId = setTimeout(() => {
-                axios.get('https://en.wikipedia.org/w/api.php', {
+        const search = (term) => {
+            axios.get('https://en.wikipedia.org/w/api.php', {
                     params: {
                         action: 'query',
                         list: 'search',
@@ -19,7 +18,12 @@ const Search = () => {
                 }).then(({ data }) => {
                     setResults(data.query.search);
                 });
-            }, 1000);
+        };
+        if (term && !results.length) {
+            search(term);
+            
+        } else if(term) {
+            const timeoutId = setTimeout(() => search(term), 500);
             return (() => {
                 clearTimeout(timeoutId);
             });
