@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Dropdown from "./components/Dropdown";
+import Translate from "./components/Translate";
 // import Dropdown from "./components/DropdownClassBased";
 import Accordion from './components/Accordion';
 import Search from './components/Search';
@@ -40,10 +41,6 @@ export default () => {
         <br />
         {/*<Search></Search>*/}
         {/* <Accordion items={items}></Accordion> */}
-        <Dropdown
-            onSelectedChange={setSelected}
-            selected={selected}
-            options={options}
-        />
+        <Translate />
     </div>)
 }
